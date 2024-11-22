@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>The Fashion Matrix</title>
+  <style>
+    body{
+      background-image: linear-gradient(to right top, #3e454c, #5f646b, #83858b, #a7a8ac, #cccccf, #cccccf, #cccccf, #cccccf, #a7a8ac, #83858b, #5f646b, #3e454c);
+    }
+  </style>
+
+
+</head>
+
+<body>
+
+  {%if request.user.is_authenticated%}
+    {% include "ecom/customer_navbar.html" %}
+  {%else%}
+    {% include "ecom/navbar.html" %}
+  {%endif%}
+
+  <center>
+    <h3>Send Us Your Valuable Feedback !</h3>
+
+    <form method="POST">
+      <!-- Very Important csrf Token -->
+      {% csrf_token %}
+      <div class="form-group">
+        <p>
+        <h3>{{ form.as_p }}</h3>
+        </p>
+        <br>
+        <input type="submit" value="Send Message" class='btn btn-primary btn-lg'>
+      </div>
+    </form>
+  </center>
+  <br><br><br><br>
+  {% include "ecom/footer.html" %}
+</body>
+</html>
